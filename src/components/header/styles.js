@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const HeaderContainer = styled.header`
-    background-color: #1b1717;
+    background-color: #0A0A0A;
     height: 67px;
     width: 100%;
     display: flex;
@@ -12,6 +12,6 @@ export const HeaderContainer = styled.header`
     h1 {
         font-size: 34px;
         font-weight: bold;
-        color: #eeebdd;
+        color: #900020;
     }
 `;

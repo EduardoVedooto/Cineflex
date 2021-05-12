@@ -1,5 +1,5 @@
 import { HomeContainer } from "./styles";
-
+import Movie from "./Movie";
 
 export default function Home() {
     return(
@@ -24,6 +24,19 @@ export default function Home() {
                 <li>
                     <img src="https://i.pinimg.com/736x/24/05/f5/2405f5d1220d45fef53df0bfe804e104.jpg" alt="Capa do filme"/>
                 </li>
+                <li>
+                    <img src="https://i.pinimg.com/736x/24/05/f5/2405f5d1220d45fef53df0bfe804e104.jpg" alt="Capa do filme"/>
+                </li>
+                <li>
+                    <img src="https://i.pinimg.com/736x/24/05/f5/2405f5d1220d45fef53df0bfe804e104.jpg" alt="Capa do filme"/>
+                </li>
+                <li>
+                    <img src="https://i.pinimg.com/736x/24/05/f5/2405f5d1220d45fef53df0bfe804e104.jpg" alt="Capa do filme"/>
+                </li>
+                <li>
+                    <img src="https://i.pinimg.com/736x/24/05/f5/2405f5d1220d45fef53df0bfe804e104.jpg" alt="Capa do filme"/>
+                </li>
+                
             </ul>
         </HomeContainer>
     );

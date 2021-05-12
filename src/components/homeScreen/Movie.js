@@ -1,7 +1,7 @@
-export default function Movie() {
+export default function Movie({poster, name}) {
     return(
         <li>
-            <img src="" alt="" />
+            <img src={poster} alt={`Filme: ${name}`} />
         </li>
     );
 }

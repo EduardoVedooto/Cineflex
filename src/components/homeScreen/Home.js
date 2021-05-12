@@ -1,42 +1,25 @@
 import { HomeContainer } from "./styles";
 import Movie from "./Movie";
+import { Subtitle } from "./../styles/Subtitle";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function Home() {
+
+    const [movies, setMovies] = useState([]);
+
+    useEffect(() => {
+        const promisse = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/movies");
+        promisse.then(({data}) => {
+            setMovies(data);
+        });
+    },[]);
+
     return(
         <HomeContainer>
-            <h2>Selecione o filme</h2>
+            <Subtitle>Selecione o filme</Subtitle>
             <ul>
-                <li>
-                    <img src="https://i.pinimg.com/736x/24/05/f5/2405f5d1220d45fef53df0bfe804e104.jpg" alt="Capa do filme"/>
-                </li>
-                <li>
-                    <img src="https://i.pinimg.com/736x/24/05/f5/2405f5d1220d45fef53df0bfe804e104.jpg" alt="Capa do filme"/>
-                </li>
-                <li>
-                    <img src="https://i.pinimg.com/736x/24/05/f5/2405f5d1220d45fef53df0bfe804e104.jpg" alt="Capa do filme"/>
-                </li>
-                <li>
-                    <img src="https://i.pinimg.com/736x/24/05/f5/2405f5d1220d45fef53df0bfe804e104.jpg" alt="Capa do filme"/>
-                </li>
-                <li>
-                    <img src="https://i.pinimg.com/736x/24/05/f5/2405f5d1220d45fef53df0bfe804e104.jpg" alt="Capa do filme"/>
-                </li>
-                <li>
-                    <img src="https://i.pinimg.com/736x/24/05/f5/2405f5d1220d45fef53df0bfe804e104.jpg" alt="Capa do filme"/>
-                </li>
-                <li>
-                    <img src="https://i.pinimg.com/736x/24/05/f5/2405f5d1220d45fef53df0bfe804e104.jpg" alt="Capa do filme"/>
-                </li>
-                <li>
-                    <img src="https://i.pinimg.com/736x/24/05/f5/2405f5d1220d45fef53df0bfe804e104.jpg" alt="Capa do filme"/>
-                </li>
-                <li>
-                    <img src="https://i.pinimg.com/736x/24/05/f5/2405f5d1220d45fef53df0bfe804e104.jpg" alt="Capa do filme"/>
-                </li>
-                <li>
-                    <img src="https://i.pinimg.com/736x/24/05/f5/2405f5d1220d45fef53df0bfe804e104.jpg" alt="Capa do filme"/>
-                </li>
-                
+                {movies.map(movie => <Movie key={movie.id} poster={movie.posterURL} name={movie.title}/>)}
             </ul>
         </HomeContainer>
     );

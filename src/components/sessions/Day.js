@@ -1,17 +1,16 @@
 import { Button } from "../styles/Button";
 import { ScheduleTable } from "./styles";
 
-export default function Day() {
+export default function Day({date, weekday, schedule}) {
     return (
         <>
-            <h3>Quinta-feira - 24/06/2021</h3>
-            <ScheduleTable>
-                <Button schedule>15:00</Button>
-                <Button schedule>19:00</Button>
-                <Button schedule>19:00</Button>
-                <Button schedule>19:00</Button>
-                <Button schedule>19:00</Button>
-                <Button schedule>19:00</Button>
+            <h3>{weekday} - {date}</h3>
+            <ScheduleTable>    
+                {schedule.map(time => {
+                    return(
+                        <Button schedule key={time.id}>{time.name}</Button>
+                    );
+                })}
             </ScheduleTable>
         </>
     );

@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export const SessionsComponent = styled.main`
     background-color: #363333;
     padding-top: 67px;
-    height: 100vh;
+    padding-bottom: 120px;
+    height: 100%;
 
     h3 {
         font-size: 20px;

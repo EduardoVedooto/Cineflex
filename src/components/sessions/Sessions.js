@@ -24,6 +24,7 @@ export default function Sessions() {
                 return(
                     <DayComponent key={day.id}>
                         <Day 
+                            movieID={movieID}
                             date={day.date}
                             weekday={day.weekday}
                             schedule={day.showtimes}

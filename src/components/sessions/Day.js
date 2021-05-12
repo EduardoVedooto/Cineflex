@@ -1,14 +1,18 @@
+import { Link } from "react-router-dom";
 import { Button } from "../styles/Button";
 import { ScheduleTable } from "./styles";
 
-export default function Day({date, weekday, schedule}) {
+
+export default function Day({movieID, date, weekday, schedule}) {
     return (
         <>
             <h3>{weekday} - {date}</h3>
             <ScheduleTable>    
-                {schedule.map(time => {
+                {schedule.map(session => {
                     return(
-                        <Button schedule key={time.id}>{time.name}</Button>
+                        <Link to={`${movieID}/session/${session.id}`} key={session.id}>
+                            <Button schedule>{session.name}</Button>
+                        </Link>
                     );
                 })}
             </ScheduleTable>

@@ -3,6 +3,7 @@ import Movie from "./Movie";
 import { Subtitle } from "./../styles/Subtitle";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function Home() {
 
@@ -19,7 +20,13 @@ export default function Home() {
         <HomeContainer>
             <Subtitle>Selecione o filme</Subtitle>
             <ul>
-                {movies.map(movie => <Movie key={movie.id} poster={movie.posterURL} name={movie.title}/>)}
+                {movies.map(movie => {
+                    return (
+                        <Link to={`movie/${movie.id}`} key={movie.id} >
+                            <Movie poster={movie.posterURL} name={movie.title}/>
+                        </Link>
+                    );
+                })}
             </ul>
         </HomeContainer>
     );

@@ -12,4 +12,8 @@ export const Button = styled.button`
     outline: none;
 `;
 
-export default { Button };
+export const FinalizationButton = styled(Button)`
+    margin: 50px auto 30px auto;
+`;
+
+export default { Button, FinalizationButton };

@@ -5,6 +5,9 @@ export const SeatsComponent = styled.main`
     padding-bottom: 120px;
     background-color: #363333;
     min-width: 350px;
+    display: flex;
+    flex-direction: column;
+
     ul{
         display: flex;
         justify-content: center;
@@ -17,7 +20,7 @@ export const SeatsComponent = styled.main`
 export const SeatComponent = styled.li`
     ${props => console.log(props)}
     border-radius: 50px;
-    background-color: ${props => props.isAvailable ?  "#E9DDD4" : "#202020"};
+    background-color: ${props => props.isAvailable ? props.isSelected ? "#900020" : "#E9DDD4" : "#202020"};
     width: 26px;
     height: 26px;
     display: flex;
@@ -29,4 +32,43 @@ export const SeatComponent = styled.li`
     box-shadow: ${props => props.isAvailable ? "0 0 6px rgba(0,0,0,.9)" : ""};
 `;
 
-export default {SeatsComponent, SeatComponent};
+export const InputComponent = styled.div`
+    
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    margin: 10px auto;
+
+    input {
+        background-color: gray;
+        outline: none;
+        border: 1px solid #202020;
+        height: 50px;
+        padding-left: 10px;
+        border-radius: 3px;
+        color: #101010;
+        ::placeholder{
+            color: #404040;
+        }
+    }
+
+    label {
+        color: #E9DDD4;
+        margin-bottom: 8px;
+    }
+`;
+
+export const LabelComponent = styled.div`
+    display: flex;
+    margin: 0 auto 30px auto;
+    width: 300px;
+    justify-content: space-around;
+    
+    div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+`;
+
+export default {SeatsComponent, SeatComponent, InputComponent, LabelComponent};

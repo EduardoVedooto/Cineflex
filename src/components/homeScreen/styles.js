@@ -16,7 +16,7 @@ export const HomeContainer = styled.main`
     li {
         width: 145px;
         height: 209px;
-        margin: 34px;
+        margin: 20px;
         display: flex;
         justify-content: center;
         align-items: center;

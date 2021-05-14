@@ -1,7 +1,7 @@
 import Footer from "../Footer/Footer";
 import { Subtitle } from "../styles/Subtitle";
 import Seat from "./Seat";
-import { SeatsComponent } from "./styles";
+import { InputWrapper, SeatsComponent } from "./styles";
 import { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
@@ -12,14 +12,15 @@ import Label from "./Label";
 export default function Seats() {
 
     const [session, setSession] = useState({});
-    const [selected, setSelected] = useState([]);
+    const [selectedSeatID, setSelectedSeatID] = useState([]);
     const [name, setName] = useState("");
     const [CPF, setCPF] = useState("");
     const { sessionID } = useParams();
-    const [selectedSeats, setSelectedSeats] = useState([]);
+    const [selectedSeats] = useState([]);
     const history = useHistory();
+    const [customers, setCustomers] = useState([]);
+
     
-    console.log(selectedSeats);
 
     useEffect(() => {
         const promisse = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/showtimes/${sessionID}/seats`);
@@ -33,34 +34,50 @@ export default function Seats() {
 
     function selectSeat(seatID) {
         const seat = session.seats.find(seat => seat.id === seatID);
-        if(selected.includes(seatID)) {
-            selected.splice(selected.indexOf(seatID), 1);
+
+        if(selectedSeatID.includes(seatID)) {
+            if(!window.confirm("Deseja remover o assento?")) return null;
+            selectedSeatID.splice(selectedSeatID.indexOf(seatID), 1);
             selectedSeats.splice(selectedSeats.indexOf(seat.name), 1);
-            setSelected([...selected]);
-        } else if(seat.isAvailable) {
-            selected.push(seat.id);
+            customers.splice(customers.indexOf(customers.find(eachCustomer => eachCustomer.id === seatID)), 1);
+            // Explicação da linha anterior (Ln43): 
+            // Faz a remoção (splice) do comprador com index (indexOf) encontrado ao percorrer (find) a lista de compradores e achar o ID correspondente
+            setSelectedSeatID([...selectedSeatID]);
+        } 
+        
+        else if(seat.isAvailable) {
+            selectedSeatID.push(seat.id);
             selectedSeats.push(seat.name);
-            setSelected([...selected]);
-        } else {
+            setSelectedSeatID([...selectedSeatID]);
+            customers.push({
+                id: seat.id,
+                name: "",
+                CPF: ""
+            });
+        }
+        
+        else {
             alert("Este assento está reservado! Por favor, escolha outra opção.")
         }
     }
 
+
     function sendRequest() {
-        if(!name) {
-            alert("Por favor, digite seu nome...");
+        if(customers.find(customer => customer.name === "")) {
+            console.log(customers.find(customer => customer.name === ""));
+            alert("Todos os campos 'Nomes' precisam estar preenchidos...");
             return;
         }
-        if(!CPF || CPF.length !== 11 || !Number(CPF)) {
-            alert("Por favor, digite um CPF válido...");
+        if(customers.find(customer => customer.CPF === "")) {
+            alert("Todos os campos 'CPF' precisam estar preenchidos...");
             return;
         }
-        if(!selected.length) {
+        if(!customers.length) {
             alert("Nenhum assento selecionado. Por favor, selecione um assento para finalizar o pedido")
             return;
         }
         const request = {
-            ids: selected,
+            ids: selectedSeatID,
             name: name,
             cpf: CPF
         };
@@ -82,17 +99,19 @@ export default function Seats() {
                 }
             });
         })
-        
-        
-        
-        console.log(request);
     }
 
-
-    console.log(session);
-    console.log(selected);
+    // console.log(customers);
+    // console.log(selectedSeats);
+    // console.log(session);
+    // console.log(selected);
     // console.log(name);
     // console.log(CPF);
+
+    console.log({
+        ids: selectedSeatID,
+        compradores: customers
+    })
 
     return(
         <SeatsComponent>
@@ -105,7 +124,7 @@ export default function Seats() {
                             seatID={seat.id} 
                             number={seat.name} 
                             isAvailable={seat.isAvailable}
-                            isSelected={selected.includes(seat.id)}
+                            isSelected={selectedSeatID.includes(seat.id)}
                             selectSeat={selectSeat}
                         />
                     );
@@ -114,11 +133,12 @@ export default function Seats() {
 
             <Label/>
             
-            <Input maxLength="30" placeholder={"Digite o seu nome..."} label={"Nome do comprador:"} value={name} setValue={setName}/>
-            <Input maxLength="11" placeholder={"Digite seu CPF..."} label={"CPF do comprador:"} value={CPF} setValue={setCPF}/>
+            {selectedSeats.map(((seat, index) => <Input key={index} customers={customers} setCustomers={setCustomers} seat={{number: seat, id: selectedSeatID[index]}} name={name} setName={setName} CPF={CPF} setCPF={setCPF}/>))}
             
-            <FinalizationButton onClick={sendRequest} >
-                    Reservar assento(s)
+            
+            <FinalizationButton onClick={sendRequest}  >
+                {selectedSeats.length <= 1 ? "Reservar assento": "Reservar assentos"}
+                
             </FinalizationButton>
             <Footer 
                 title={session.movie.title} 

@@ -42,8 +42,40 @@ export const InputComponent = styled.div`
     
     display: flex;
     flex-direction: column;
-    width: 350px;
+    width: 300px;
     margin: 10px auto;
+
+`;
+
+export const LabelComponent = styled.div`
+    display: flex;
+    margin: 0 auto 30px auto;
+    width: 300px;
+    justify-content: space-around;
+    
+    div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-weight: 300;
+        color: rgba(233,221,212,.7);
+    }
+`;
+
+export const InputWrapper = styled.form`
+    margin: 20px auto;
+    padding: 0 10px;
+    border: 1px solid #202020;
+    position: relative;
+
+    h3 {
+        position: absolute;
+        top: -9px;
+        right: 20px;
+        background-color: #363333;
+        padding: 0 5px;
+        color: #E9DDD4;
+    }
 
     input {
         background-color: #808080;
@@ -65,21 +97,6 @@ export const InputComponent = styled.div`
     label {
         color: #E9DDD4;
         margin-bottom: 8px;
-    }
-`;
-
-export const LabelComponent = styled.div`
-    display: flex;
-    margin: 0 auto 30px auto;
-    width: 300px;
-    justify-content: space-around;
-    
-    div{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        font-weight: 300;
-        color: rgba(233,221,212,.7);
     }
 `;
 

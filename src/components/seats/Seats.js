@@ -1,7 +1,7 @@
 import Footer from "../Footer/Footer";
 import { Subtitle } from "../styles/Subtitle";
 import Seat from "./Seat";
-import { InputWrapper, SeatsComponent } from "./styles";
+import { SeatsComponent } from "./styles";
 import { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
@@ -27,7 +27,7 @@ export default function Seats() {
         promisse.then(({data}) => {
             setSession(data);
         });
-    },[]);
+    },[sessionID]);
     
     if(!session.id) return <Loading/>;
 

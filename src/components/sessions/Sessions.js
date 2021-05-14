@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Footer from "../Footer/Footer";
-import MovieOverview from "../movieOverview/MovieOverview";
 import Loading from "../loading/Loading";
 
 
@@ -17,7 +16,7 @@ export default function Sessions() {
     useEffect(() => {
         const promisse = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/movies/${movieID}/showtimes`);
         promisse.then(({data}) => setSession(data));
-    },[]);
+    },[movieID]);
 
     if(!session.days.length) return <Loading />
 

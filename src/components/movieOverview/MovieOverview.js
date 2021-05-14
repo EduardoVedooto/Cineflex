@@ -1,9 +1,6 @@
-import { useState } from "react";
 import styled from "styled-components";
 
 export default function MovieOverview({movie, isSynopsisDisplayed, setIsSynopsisDisplayed}){
-    
-    console.log(movie);
     return(
         <Main isEnable={isSynopsisDisplayed}>
             <MovieContainer onClick={e => e.stopPropagation()}>

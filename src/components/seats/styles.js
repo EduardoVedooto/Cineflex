@@ -100,4 +100,6 @@ export const InputWrapper = styled.form`
     }
 `;
 
-export default {SeatsComponent, SeatComponent, InputComponent, LabelComponent};
+const styles = {SeatsComponent, SeatComponent, InputComponent, LabelComponent}
+
+export default styles;

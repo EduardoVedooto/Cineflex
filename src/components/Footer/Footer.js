@@ -1,7 +1,6 @@
 import { useState } from "react";
 import MovieOverview from "../movieOverview/MovieOverview";
 import { FooterComponent } from "./styles";
-import { FiChevronUp } from "react-icons/fi";
 
 
 export default function Footer({poster, title, date, day, synopsis}) {

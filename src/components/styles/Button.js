@@ -21,4 +21,5 @@ export const FinalizationButton = styled(Button)`
     pointer-events: ${props => props.isActive ? "auto" : "none"};
 `;
 
-export default { Button, FinalizationButton };
+const styles = { Button, FinalizationButton }
+export default styles;

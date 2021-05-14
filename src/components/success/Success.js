@@ -22,7 +22,7 @@ export default function Success(props){
                         <Item key={customer.id}>
                             <p><strong>Número do Assento:</strong> {seats[index]}</p>
                             <p><strong>Nome:</strong> {customer.name}</p>
-                            <p><strong>CPF:</strong> {customer.CPF.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g,"\$1.\$2.\$3\-\$4")}</p>
+                            <p><strong>CPF:</strong> {customer.CPF.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g,"\$1.\$2.\$3\-\$4")}</p>{/*eslint-disable-line*/}
                         </Item>
                     ))}
                 </ul>

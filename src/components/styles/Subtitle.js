@@ -9,4 +9,6 @@ export const Subtitle = styled.h2`
     text-shadow: 0 0 2px #6b6b6b;
 `;
 
-export default {Subtitle};
+
+const styles = {Subtitle};
+export default styles;

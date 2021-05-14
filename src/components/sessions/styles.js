@@ -28,4 +28,5 @@ export const DayComponent = styled.div`
     padding: 0 30px;
 `;
 
-export default {SessionsComponent, ScheduleTable, DayComponent};
+const styles = {SessionsComponent, ScheduleTable, DayComponent}
+export default styles;

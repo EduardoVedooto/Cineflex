@@ -11,14 +11,13 @@ import Label from "./Label";
 
 export default function Seats() {
 
-    const [session, setSession] = useState({});
     const [selectedSeatID, setSelectedSeatID] = useState([]);
-    const [name, setName] = useState("");
-    const [CPF, setCPF] = useState("");
-    const { sessionID } = useParams();
-    const [selectedSeats] = useState([]);
-    const history = useHistory();
     const [customers, setCustomers] = useState([]);
+    const [isActive, setIsActive] = useState(false);
+    const [session, setSession] = useState({});
+    const [selectedSeats] = useState([]);
+    const { sessionID } = useParams();
+    const history = useHistory();
 
     
 
@@ -59,29 +58,29 @@ export default function Seats() {
         else {
             alert("Este assento está reservado! Por favor, escolha outra opção.")
         }
+        activateButton();
     }
 
+    function activateButton() {
+        if(customers.length &&
+          !customers.find(customer => customer.name === "") &&
+          !customers.find(customer => customer.CPF === "") &&
+          !customers.find(customer => customer.CPF.length < 11) &&
+          customers.map(customer => customer.CPF).filter(CPF => Number(CPF)).length === customers.length
+        )
+        {
+            setIsActive(true);    
+        } else {
+            setIsActive(false);
+        }
+    }
 
     function sendRequest() {
-        if(customers.find(customer => customer.name === "")) {
-            console.log(customers.find(customer => customer.name === ""));
-            alert("Todos os campos 'Nomes' precisam estar preenchidos...");
-            return;
-        }
-        if(customers.find(customer => customer.CPF === "")) {
-            alert("Todos os campos 'CPF' precisam estar preenchidos...");
-            return;
-        }
-        if(!customers.length) {
-            alert("Nenhum assento selecionado. Por favor, selecione um assento para finalizar o pedido")
-            return;
-        }
         const request = {
             ids: selectedSeatID,
-            name: name,
-            cpf: CPF
+            compradores: customers
         };
-        
+
         const promisse = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/seats/book-many",request);
 
         promisse.then(() => {
@@ -93,25 +92,12 @@ export default function Seats() {
                         date: session.day.date,
                         time: session.name
                     },
-                    name: name,
-                    CPF: CPF,
+                    customers: customers,
                     seats: selectedSeats
                 }
             });
         })
     }
-
-    // console.log(customers);
-    // console.log(selectedSeats);
-    // console.log(session);
-    // console.log(selected);
-    // console.log(name);
-    // console.log(CPF);
-
-    console.log({
-        ids: selectedSeatID,
-        compradores: customers
-    })
 
     return(
         <SeatsComponent>
@@ -133,10 +119,18 @@ export default function Seats() {
 
             <Label/>
             
-            {selectedSeats.map(((seat, index) => <Input key={index} customers={customers} setCustomers={setCustomers} seat={{number: seat, id: selectedSeatID[index]}} name={name} setName={setName} CPF={CPF} setCPF={setCPF}/>))}
+            {selectedSeats.map(((seat, index) => (
+                <Input 
+                    key={index}
+                    customers={customers}
+                    setCustomers={setCustomers}
+                    seat={{number: seat, id: selectedSeatID[index]}} //Objeto que possui o número e o ID do assento
+                    activateButton={activateButton}
+                />
+            )))}
             
             
-            <FinalizationButton onClick={sendRequest}  >
+            <FinalizationButton isActive={isActive} onClick={() => sendRequest()}  >
                 {selectedSeats.length <= 1 ? "Reservar assento": "Reservar assentos"}
                 
             </FinalizationButton>

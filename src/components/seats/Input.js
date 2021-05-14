@@ -1,6 +1,6 @@
 import { InputComponent, InputWrapper } from "./styles";
 
-export default function Input({customers, setCustomers, seat}){
+export default function Input({customers, setCustomers, seat, activateButton}){
     return(
         <InputWrapper>
             <h3>Assento: {seat.number}</h3>
@@ -15,6 +15,7 @@ export default function Input({customers, setCustomers, seat}){
                     onChange={e => {
                         customers.find(customer => customer.id === seat.id).name = e.target.value;
                         setCustomers([...customers]);
+                        activateButton();
                     }}
                 />
             </InputComponent>
@@ -28,6 +29,7 @@ export default function Input({customers, setCustomers, seat}){
                     onChange={e => {
                         customers.find(customer => customer.id === seat.id).CPF = e.target.value;
                         setCustomers([...customers]);
+                        activateButton();
                     }}
                 />
             </InputComponent>

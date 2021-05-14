@@ -4,8 +4,7 @@ import { Button } from "../styles/Button";
 import { Subtitle } from "../styles/Subtitle";
 
 export default function Success(props){
-    console.log(props.location);
-    const {movie, CPF, name, session, seats} = props.location.orderData;
+    const {customers, movie, session, seats} = props.location.orderData;
     const history = useHistory();
 
     return(
@@ -17,15 +16,16 @@ export default function Success(props){
                 <p>{session.date} - {session.time}</p>
             </InfoWrapper>
             <InfoWrapper>
-                <h3>Lugares</h3>
+                <h3>Seus ingressos</h3>
                 <ul>
-                    {seats.map((seat, index) => <Seat key={index}>Assento: {seat}</Seat>)}
+                    {customers.map((customer, index) => (
+                        <Item key={customer.id}>
+                            <p><strong>Número do Assento:</strong> {seats[index]}</p>
+                            <p><strong>Nome:</strong> {customer.name}</p>
+                            <p><strong>CPF:</strong> {customer.CPF.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g,"\$1.\$2.\$3\-\$4")}</p>
+                        </Item>
+                    ))}
                 </ul>
-            </InfoWrapper>
-            <InfoWrapper>
-                <h3>Comprador</h3>
-                <p>Nome: {name}</p>
-                <p>CPF: {CPF.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g,"\$1.\$2.\$3\-\$4")}</p>
             </InfoWrapper>
             <ButtonBackHome onClick={() => history.push("/")}>Voltar pra home</ButtonBackHome>
         </Container>
@@ -37,7 +37,6 @@ const Container = styled.main`
     padding: 67px 0;
     display: flex;
     flex-direction: column;
-    height: 100vh;
     @media(max-height: 744px) {
         height: auto;
     }
@@ -64,6 +63,10 @@ const InfoWrapper = styled.div`
         margin-bottom: 5px;
         word-break: break-word;
     }
+
+    ul {
+        width: 100%;
+    }
 `;
 
 const ButtonBackHome = styled(Button)`
@@ -74,7 +77,10 @@ const ButtonBackHome = styled(Button)`
     height: 67px;
 `;
 
-const Seat = styled.li`
+const Item = styled.li`
     font-size: 22px;
-    margin: 5px 0;
+    margin: 15px 0;
+    padding: 15px;
+    border-radius: 8px;
+    border: 2px dashed #544545;
 `;

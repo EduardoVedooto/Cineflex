@@ -1,6 +1,6 @@
 import { InputComponent } from "./styles";
 
-export default function Input({maxLength, placeholder, label, value, setValue, validate}){
+export default function Input({maxLength, placeholder, label, value, setValue,}){
     return(
         <InputComponent>
             <label>{label}</label>
@@ -9,10 +9,7 @@ export default function Input({maxLength, placeholder, label, value, setValue, v
                 maxlength={maxLength}
                 placeholder={placeholder} 
                 value={value} 
-                onChange={e => {
-                    setValue(e.target.value);
-                    validate();
-                }} />
+                onChange={e => setValue(e.target.value)} />
         </InputComponent>
     );
 }

@@ -16,7 +16,6 @@ export const SeatsComponent = styled.main`
         margin: 0 auto;
     }
     a {
-        ${props => console.log(props.isActive)}
         text-decoration: none;
         color: #0A0A0A;
         margin: 0 auto;

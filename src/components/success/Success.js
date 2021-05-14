@@ -19,7 +19,7 @@ export default function Success(props){
             <InfoWrapper>
                 <h3>Lugares</h3>
                 <ul>
-                    {seats.map(seat => <Seat>Assento: {seat}</Seat>)}
+                    {seats.map((seat, index) => <Seat key={index}>Assento: {seat}</Seat>)}
                 </ul>
             </InfoWrapper>
             <InfoWrapper>
@@ -62,6 +62,7 @@ const InfoWrapper = styled.div`
     p {
         font-size: 22px;
         margin-bottom: 5px;
+        word-break: break-word;
     }
 `;
 

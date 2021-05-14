@@ -106,7 +106,7 @@ export default function Seats() {
 
             <Label/>
             
-            <Input maxLength="" placeholder={"Digite o seu nome..."} label={"Nome do comprador:"} value={name} setValue={setName}/>
+            <Input maxLength="30" placeholder={"Digite o seu nome..."} label={"Nome do comprador:"} value={name} setValue={setName}/>
             <Input maxLength="11" placeholder={"Digite seu CPF..."} label={"CPF do comprador:"} value={CPF} setValue={setCPF}/>
             
             <FinalizationButton onClick={sendRequest} >

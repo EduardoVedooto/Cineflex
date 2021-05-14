@@ -14,4 +14,12 @@ export const HeaderContainer = styled.header`
         font-weight: bold;
         color: #900020;
     }
+
+    svg {
+        border-radius: 10px;
+        position: absolute;
+        left: 10px;
+        cursor: pointer;
+        display: ${props => props.enableGoBack ? "initial" : "none"};
+    }
 `;

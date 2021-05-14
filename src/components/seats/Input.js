@@ -6,7 +6,7 @@ export default function Input({maxLength, placeholder, label, value, setValue,})
             <label>{label}</label>
             <input 
                 type="text"
-                maxlength={maxLength}
+                maxLength={maxLength}
                 placeholder={placeholder} 
                 value={value} 
                 onChange={e => setValue(e.target.value)} />

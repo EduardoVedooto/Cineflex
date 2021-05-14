@@ -8,6 +8,7 @@ import axios from "axios";
 import Input from "./Input";
 import { FinalizationButton } from "./../styles/Button";
 import Label from "./Label";
+import Loading from "../loading/Loading";
 
 export default function Seats() {
 
@@ -28,7 +29,7 @@ export default function Seats() {
         });
     },[]);
     
-    if(!session.id) return null;
+    if(!session.id) return <Loading/>;
 
 
     function selectSeat(seatID) {

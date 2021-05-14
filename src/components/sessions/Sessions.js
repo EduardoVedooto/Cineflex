@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Footer from "../Footer/Footer";
 import MovieOverview from "../movieOverview/MovieOverview";
+import Loading from "../loading/Loading";
 
 
 export default function Sessions() {
@@ -18,6 +19,7 @@ export default function Sessions() {
         promisse.then(({data}) => setSession(data));
     },[]);
 
+    if(!session.days.length) return <Loading />
 
     return(
         <SessionsComponent>

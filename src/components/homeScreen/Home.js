@@ -4,6 +4,7 @@ import { Subtitle } from "./../styles/Subtitle";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Loading from "../loading/Loading";
 
 export default function Home() {
 
@@ -15,6 +16,8 @@ export default function Home() {
             setMovies(data);
         });
     },[]);
+
+    if(!movies.length) return <Loading/>
 
     return(
         <HomeContainer>

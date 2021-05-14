@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Footer from "../Footer/Footer";
+import MovieOverview from "../movieOverview/MovieOverview";
 
 
 export default function Sessions() {
@@ -16,6 +17,7 @@ export default function Sessions() {
         const promisse = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/movies/${movieID}/showtimes`);
         promisse.then(({data}) => setSession(data));
     },[]);
+
 
     return(
         <SessionsComponent>
@@ -32,7 +34,8 @@ export default function Sessions() {
                     </DayComponent>
                 );
             })}
-            <Footer poster={session.posterURL} title={session.title}/>
+            <Footer poster={session.posterURL} synopsis={session.overview} title={session.title}/>
+            
         </SessionsComponent>
     );
 }

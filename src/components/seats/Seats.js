@@ -138,7 +138,8 @@ export default function Seats() {
                 title={session.movie.title} 
                 poster={session.movie.posterURL} 
                 day={session.day.weekday} 
-                date={session.day.date} 
+                date={session.day.date}
+                synopsis={session.movie.overview}
             />
         </SeatsComponent>
     );

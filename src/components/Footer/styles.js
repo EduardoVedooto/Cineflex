@@ -21,4 +21,5 @@ export const FooterComponent = styled.footer`
         font-size: 24px;
         font-weight: bold;
     }
+
 `;

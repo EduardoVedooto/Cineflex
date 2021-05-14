@@ -64,19 +64,27 @@ export default function Seats() {
             name: name,
             cpf: CPF
         };
-        history.push({
-            pathname:"/success",
-            orderData: {
-                movie: session.movie.title,
-                session: {
-                    date: session.day.date,
-                    time: session.name
-                },
-                name: name,
-                CPF: CPF,
-                seats: selectedSeats
-            }
-        });
+        
+        const promisse = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/seats/book-many",request);
+
+        promisse.then(() => {
+            history.push({
+                pathname:"/success",
+                orderData: {
+                    movie: session.movie.title,
+                    session: {
+                        date: session.day.date,
+                        time: session.name
+                    },
+                    name: name,
+                    CPF: CPF,
+                    seats: selectedSeats
+                }
+            });
+        })
+        
+        
+        
         console.log(request);
     }
 

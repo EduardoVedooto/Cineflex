@@ -13,7 +13,7 @@ export default function MovieOverview({movie, isSynopsisDisplayed, setIsSynopsis
 }
 
 const Main = styled.main`
-    background-color: rgba(0,0,0,.3);
+    background-color: rgba(0,0,0,.5);
     position: fixed;
     top: 0;
     left: 0;
@@ -23,6 +23,7 @@ const Main = styled.main`
     align-items: center;
     justify-content: center;
     display: ${props => props.isEnable ? "flex" : "none"};
+    backdrop-filter: blur(5px);
 `;
 
 const MovieContainer = styled.div`

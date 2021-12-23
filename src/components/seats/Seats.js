@@ -9,6 +9,7 @@ import Input from "./Input";
 import { FinalizationButton } from "./../styles/Button";
 import Label from "./Label";
 import Loading from "../loading/Loading";
+import Swal from "sweetalert2";
 
 export default function Seats() {
 
@@ -36,13 +37,23 @@ export default function Seats() {
         const seat = session.seats.find(seat => seat.id === seatID);
 
         if(selectedSeatID.includes(seatID)) {
-            if(!window.confirm("Deseja remover o assento?")) return null;
-            selectedSeatID.splice(selectedSeatID.indexOf(seatID), 1);
-            selectedSeats.splice(selectedSeats.indexOf(seat.name), 1);
-            customers.splice(customers.indexOf(customers.find(eachCustomer => eachCustomer.id === seatID)), 1);
-            // Explicação da linha anterior (Ln43): 
-            // Faz a remoção (splice) do comprador com index (indexOf) encontrado ao percorrer (find) a lista de compradores e achar o ID correspondente
-            setSelectedSeatID([...selectedSeatID]);
+            Swal.fire({
+                titleText: "Remover assento?",
+                icon: "question",
+                showDenyButton: true,
+                confirmButtonText: "Sim",
+                denyButtonText: "Não",
+                confirmButtonColor: "#900020",
+                denyButtonColor: "#202020"
+            }).then(response => {
+                if(response.isConfirmed) {
+                    selectedSeatID.splice(selectedSeatID.indexOf(seatID), 1);
+                    selectedSeats.splice(selectedSeats.indexOf(seat.name), 1);
+                    customers.splice(customers.indexOf(customers.find(eachCustomer => eachCustomer.id === seatID)), 1);
+                    setSelectedSeatID([...selectedSeatID]);
+                }
+            });
+            
         } 
         
         else if(seat.isAvailable) {
@@ -56,9 +67,14 @@ export default function Seats() {
             });
         }
         
-        else {
-            alert("Este assento está reservado! Por favor, escolha outra opção.")
-        }
+        else Swal.fire({
+            text: "",
+            icon: "warning",
+            confirmButtonColor: "#900020",
+            confirmButtonText: "Entendido",
+            titleText: "Este assento já está reservado"
+
+        })
         activateButton();
     }
 

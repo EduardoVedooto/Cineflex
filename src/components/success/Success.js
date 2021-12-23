@@ -37,9 +37,8 @@ const Container = styled.main`
     padding: 67px 0;
     display: flex;
     flex-direction: column;
-    @media(max-height: 744px) {
-        height: auto;
-    }
+    min-height: 100vh;
+
 `;
 
 const InfoWrapper = styled.div`
@@ -52,6 +51,7 @@ const InfoWrapper = styled.div`
     background-color: #0a0a0a73;
     width: 90%;
     border-radius: 10px;
+ 
 
     h3 {
         font-size: 24px;
@@ -75,6 +75,7 @@ const ButtonBackHome = styled(Button)`
     left: 0;
     width: 100%;
     height: 67px;
+    border-radius: 0;
 `;
 
 const Item = styled.li`

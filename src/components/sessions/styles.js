@@ -4,7 +4,7 @@ export const SessionsComponent = styled.main`
     background-color: #363333;
     padding-top: 67px;
     padding-bottom: 120px;
-    height: 100%;
+    min-height: 100vh;
 
     h3 {
         font-size: 20px;

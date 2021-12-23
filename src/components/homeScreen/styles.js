@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const HomeContainer = styled.main`
     padding-top: 67px;
-    height: 100%;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     background-color: #363333;

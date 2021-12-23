@@ -8,7 +8,7 @@ export const HeaderContainer = styled.header`
     align-items: center;
     justify-content: center;
     position: fixed;
-    z-index: 10;
+    
     
     h1 {
         font-size: 34px;

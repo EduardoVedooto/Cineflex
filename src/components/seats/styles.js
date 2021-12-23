@@ -7,6 +7,7 @@ export const SeatsComponent = styled.main`
     min-width: 350px;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 
     ul {
         display: flex;
